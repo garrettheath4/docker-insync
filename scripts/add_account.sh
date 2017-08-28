@@ -1,8 +1,5 @@
 #!/bin/bash
 
-GDRIVE_ACCOUNT=$1
-GDRIVE_AUTHCODE=$2
-
 # Do sanity checks
 if [ -z "${GDRIVE_ACCOUNT}" ]; then
     echo "No google drive account given. Exiting !"
@@ -15,8 +12,8 @@ if [ -z "${GDRIVE_AUTHCODE}" ]; then
     exit 1
 fi
 
-mkdir -p /data/home/${GDRIVE_ACCOUNT}
-/usr/bin/insync-headless add_account -a ${GDRIVE_AUTHCODE} -p /data/home/${GDRIVE_ACCOUNT}
+mkdir -p "/data/${GDRIVE_ACCOUNT}"
+/usr/bin/insync-headless add_account -a "${GDRIVE_AUTHCODE}" -p "/data/${GDRIVE_ACCOUNT}"
 /usr/bin/insync-headless set_autostart yes
 
 exit 0

@@ -1,5 +1,6 @@
 FROM debian:jessie
-MAINTAINER Christophe Burki, christophe.burki@gmail.com
+MAINTAINER Garrett Heath Koller, garrettheath4@gmail.com
+#Based on the work of Christophe Burki, christophe.burki@gmail.com
 
 # install system requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -28,5 +29,8 @@ RUN chmod a+x /usr/bin/s6-* && \
 # install scripts
 COPY scripts/* /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*
+
+# run add_account script
+RUN /usr/local/bin/add_account.sh
 
 CMD ["/usr/bin/s6-svscan", "/etc/s6"]
