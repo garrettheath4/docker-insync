@@ -6,17 +6,17 @@ Insync is a Google Drive synchronization client that work well on linux. You nee
 licence for using Insync.
 
 
-Build the image
+Build the Image
 ---------------
 
 To create this image, execute the following command in the docker-insync folder.
 
     docker build \
-        -t cburki/insync \
+        -t garrettheath4/insync \
         .
-        
 
-Run the image
+
+Run the Image
 -------------
 
 Execute the following command to run your image. The first time it started, you need
@@ -25,11 +25,11 @@ to add your Google account and eventually select the files to synchronize.
     docker run \
         --name insync \
         --volumes-from <data volume container> \
-	      -d \
-        cburki/insync:latest
+        --detach \
+        garrettheath4/insync:latest
 
 
-Setup insync
+Setup Insync
 ------------
 
 You first need to setup Insync in order to synchronize your files with Google
@@ -41,7 +41,7 @@ prompts.
         -t \
         insync \
         /usr/local/bin/add_account.sh <account> <auth_code>
-	
+
 Then optionally, select the files to synchronize. You certainly not need to
 synchronize all your drive here.
 
@@ -50,7 +50,7 @@ synchronize all your drive here.
         -t \
         insync \
         /usr/local/bin/manage_sync.sh <account>
-	
+
 It will start a curses interface for selecting the files to synchronize. You could
 also manage the files to ignore.
 
