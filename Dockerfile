@@ -16,9 +16,9 @@ RUN echo "deb http://apt.insynchq.com/ubuntu trusty non-free contrib" > /etc/apt
     apt-get clean
 
 # configure locales and timezone
-RUN locale-gen en_GB.UTF-8 fr_CH.UTF-8 en_US.UTF-8 && \
-    cp /usr/share/zoneinfo/Europe/Zurich /etc/localtime && \
-    echo "Europe/Zurich" > /etc/timezone
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen && \
+    cp /usr/share/zoneinfo/America/New_York /etc/localtime && \
+    echo "America/New_York" > /etc/timezone
 
 # s6 install and config
 COPY bin/* /usr/bin/
@@ -30,7 +30,15 @@ RUN chmod a+x /usr/bin/s6-* && \
 COPY scripts/* /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*
 
-# run add_account script
-RUN /usr/local/bin/add_account.sh
+# initialize Insync
+RUN mkdir -p /data
+ENTRYPOINT /usr/bin/insync-headless start && sleep 2 && \
+           /usr/bin/insync-headless set_autostart yes && \
+           /usr/bin/insync-headless add_account --auth-code "${GDRIVE_AUTHCODE}" --path /data --export-option link && \
+           /usr/bin/insync-headless quit && \
+           /usr/bin/insync-headless start --no-daemon
 
-CMD ["/usr/bin/s6-svscan", "/etc/s6"]
+# CMD ["/usr/bin/s6-svscan", "/etc/s6"]
+# CMD ["/etc/s6/insync/run"]
+# CMD /bin/bash
+# CMD ["/usr/bin/insync-headless", "start", "--no-daemon"]

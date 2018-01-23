@@ -1,3 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# vim: set et sw=4 ts=4 sts=4:
 
-exec /usr/bin/insync-headless start --no-daemon
+# Do sanity checks
+if [ -z "${GDRIVE_ACCOUNT}" ]; then
+    echo 'No Google Drive account given.'
+    exit 1
+fi
+
+if [ -z "${GDRIVE_AUTHCODE}" ]; then
+    echo 'No Google Drive authentication code given.'
+    echo 'To get the authenticatiom code, go to http://goo.gl/kTvy0y and follow prompts.'
+    exit 2
+fi
+
+if [ -n "${GDRIVE_ACCOUNT}" ] && [ -n "${GDRIVE_AUTHCODE}" ]; then
+    mkdir -p "/data/${GDRIVE_ACCOUNT}"
+    /usr/bin/insync-headless start
+    /usr/bin/insync-headless set_autostart yes
+    /usr/bin/insync-headless add_account -a "${GDRIVE_AUTHCODE}" -p "/data/${GDRIVE_ACCOUNT}"
+else
+    echo 'ERROR: GDRIVE_ACCOUNT or GDRIVE_AUTHCODE were not set.'
+    exit 3
+fi
+
