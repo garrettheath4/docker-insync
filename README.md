@@ -92,8 +92,13 @@ Run the following command to ignore specific files.
         /usr/local/bin/manage_ignore.sh <account>
 
 
+Reference
+---------
+* [_Gotchas in Writing Dockerfile_][gotchas] from kimh.github.io
+
 
 <!-- Links -->
 [Insync]: https://www.insynchq.com/
 [Docker Hub]: https://hub.docker.com/r/garrettheath4/docker-insync/
 [GitHub repository]: https://github.com/garrettheath4/docker-insync
+[gotchas]: http://kimh.github.io/blog/en/docker/gotchas-in-writing-dockerfile-en/

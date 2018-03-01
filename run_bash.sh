@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+# run_bash.sh
 
-docker run -it --env-file .env --name insync garrettheath4/docker-insync bash
+docker run -it --env-file .env --name insync-container insync bash
