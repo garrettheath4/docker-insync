@@ -22,7 +22,7 @@ else
 	echo "add_account :> $add_output"
 	echo "add_account => $add_exit_code"
 
-	if [[ $add_output = "Error"* ]]; then
+	if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
 		echo 'Error detected, exiting with code 1'
 		exit 1
 	else
