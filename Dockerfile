@@ -33,14 +33,3 @@ RUN chmod a+x /usr/local/bin/*
 # initialize Insync
 RUN mkdir -p /data
 CMD /usr/local/bin/insync_init.sh "${GDRIVE_AUTHCODE}"
-
-# ENTRYPOINT /usr/bin/insync-headless start && sleep 2 && \
-#            /usr/bin/insync-headless set_autostart yes && \
-#            /usr/bin/insync-headless add_account --auth-code "${GDRIVE_AUTHCODE}" --path /data --export-option link && \
-#            /usr/bin/insync-headless quit && \
-#            /usr/bin/insync-headless start --no-daemon
-
-# CMD ["/usr/bin/s6-svscan", "/etc/s6"]
-# CMD ["/etc/s6/insync/run"]
-# CMD /bin/bash
-# CMD ["/usr/bin/insync-headless", "start", "--no-daemon"]
