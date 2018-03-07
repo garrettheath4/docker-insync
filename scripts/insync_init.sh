@@ -9,20 +9,14 @@ if [ $# -lt 1 ]; then
 else
 	echo 'Starting Insync'
 	/usr/bin/insync-headless start
-	echo "start => $?"
 
 	sleep 5
-
-	/usr/bin/insync-headless set_autostart yes
-	echo "autostart => $?"
 
 	if [ -z "$(/usr/bin/insync-headless get_account_information)" ]; then
 
 		echo "Adding account with auth code: $auth_code"
 		add_output=$(/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link)
-		add_exit_code=$?
 		echo "add_account :> $add_output"
-		echo "add_account => $add_exit_code"
 
 		if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
 			echo 'Error detected, exiting with code 1'
