@@ -8,11 +8,13 @@ ENV GDRIVE_AUTHCODE=""
 # install system requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
     locales \
+    gnupg \
     wget && \
     apt-get autoremove -y && \
     apt-get clean
 
-RUN echo "deb http://apt.insynchq.com/debian buster non-free contrib" > /etc/apt/sources.list.d/insync.list && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A684470CACCAF35C && \
+    echo "deb http://apt.insynchq.com/debian buster non-free contrib" > /etc/apt/sources.list.d/insync.list && \
     apt-get update && apt-get install -y --no-install-recommends \
     insync-headless && \
     apt-get clean
