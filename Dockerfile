@@ -1,6 +1,9 @@
-FROM debian:jessie
+FROM debian:buster
 MAINTAINER Garrett Heath Koller, garrettheath4@gmail.com
 #Based on the work of Christophe Burki, christophe.burki@gmail.com
+
+ENV GDRIVE_ACCOUNT=""
+ENV GDRIVE_AUTHCODE=""
 
 # install system requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,8 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get autoremove -y && \
     apt-get clean
 
-RUN echo "deb http://apt.insynchq.com/ubuntu trusty non-free contrib" > /etc/apt/sources.list.d/insync.list && \
-    wget --no-check-certificate -O - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | apt-key add - && \
+RUN echo "deb http://apt.insynchq.com/debian buster non-free contrib" > /etc/apt/sources.list.d/insync.list && \
     apt-get update && apt-get install -y --no-install-recommends \
     insync-headless && \
     apt-get clean
@@ -31,5 +33,5 @@ COPY scripts/* /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*
 
 # initialize Insync
-RUN mkdir -p /data
+VOLUME /data
 CMD /usr/local/bin/insync_init.sh "${GDRIVE_AUTHCODE}"
