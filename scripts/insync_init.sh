@@ -23,11 +23,11 @@ else
 			exit 1
 		else
 			# run forever since insync-headless is running in the background
-			tail -f /dev/null
+			tail -f ~/.config/Insync/out.txt || tail -f /dev/null
 		fi
 	else
 		/usr/bin/insync-headless get_account_information
 		echo "Insync account already added"
-		tail -f /dev/null
+		tail -f ~/.config/Insync/out.txt || tail -f /dev/null
 	fi
 fi
