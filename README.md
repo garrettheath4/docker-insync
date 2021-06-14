@@ -6,7 +6,7 @@ Summary
 -------
 
 Docker image for synchronizing files with Google Drive using [Insync].
-Insync is a Google Drive synchronization client that works well on linux. You
+Insync is a Google Drive synchronization client that works well on Linux. You
 need to buy a licence to use Insync.
 
 
@@ -22,7 +22,8 @@ stored in a file (for example: `.env`) to be loaded by `docker run` using the
     GDRIVE_ACCOUNT=garrettheath4
     GDRIVE_AUTHCODE=4/Z3ab...<REDACTED>
 
-The `GDRIVE_AUTHCODE` can be found by [clicking here][AuthCodeUrl] and following the prompts.
+The `GDRIVE_AUTHCODE` can be found by [clicking here][AuthCodeUrl] and
+following the prompts.
 
 
 Run the Image
@@ -89,7 +90,7 @@ Manually Configure Insync
 ### Add an Account
 
 Run the following command if the automatic configuration doesn't work or if you
-need to link more than one Google Drive account. To get the authenticatiom code,
+need to link more than one Google Drive account. To get the authentication code,
 [click here][AuthCodeUrl] and follow the prompts.
 
     docker exec \
@@ -121,6 +122,7 @@ Run the following command to ignore specific files.
 
 Reference
 ---------
+
 * [_Gotchas in Writing Dockerfile_][gotchas] from kimh.github.io
 
 
@@ -132,3 +134,4 @@ Reference
 [gotchas]: http://kimh.github.io/blog/en/docker/gotchas-in-writing-dockerfile-en/
 <!-- Note: Please update the URL in the "Get Authorization Code" section if AuthCodeUrl changes -->
 [AuthCodeUrl]: https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth%3Fscope%3Demail%2Bprofile%2Bhttps%253A%252F%252Fwww.googleapis.com%252Fauth%252Fdrive%2Bhttps%253A%252F%252Fwww.googleapis.com%252Fauth%252Factivity%26redirect_uri%3Durn%253Aietf%253Awg%253Aoauth%253A2.0%253Aoob%26hl%3Den%26client_id%3D468017360789.apps.googleusercontent.com%26response_type%3Dcode%26access_type%3Doffline
+
