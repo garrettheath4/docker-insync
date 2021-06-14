@@ -19,6 +19,7 @@ else
 		#echo "add_account :> $add_output"
 		/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link << EOF
 yes
+
 EOF
 
 		#if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
