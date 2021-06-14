@@ -59,34 +59,6 @@ Manually Configure Insync
 -------------------------
 
 
-### Get Authorization Code
-
-<!-- Note: Please update the [AuthCodeUrl] URL at the bottom of this file if the URL in this section changes -->
-
-* Full URL
-
-        https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth%3Fscope%3Demail%2Bprofile%2Bhttps%253A%252F%252Fwww.googleapis.com%252Fauth%252Fdrive%2Bhttps%253A%252F%252Fwww.googleapis.com%252Fauth%252Factivity%26redirect_uri%3Durn%253Aietf%253Awg%253Aoauth%253A2.0%253Aoob%26hl%3Den%26client_id%3D468017360789.apps.googleusercontent.com%26response_type%3Dcode%26access_type%3Doffline
-
-    * Base URL: `https://accounts.google.com/AccountChooser`
-    * `?continue=` URL encoded version of:
-
-            https://accounts.google.com/o/oauth2/v2/auth?scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Factivity&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&hl=en&client_id=468017360789.apps.googleusercontent.com&response_type=code
-
-        * Sub URL: `https://accounts.google.com/o/oauth2/auth`
-        * `?scope=` URL encoded version of:
-
-                email+profile+https://www.googleapis.com/auth/drive+https://www.googleapis.com/auth/activity
-
-        * `&redirect_uri=` URL encoded version of:
-
-                urn:ietf:wg:oauth:2.0:oob
-
-        * `&hl = en`
-        * `&client_id=468017360789.apps.googleusercontent.com`
-        * `&response_type=code`
-        * `&access_type=offline`
-
-
 ### Add an Account
 
 Run the following command if the automatic configuration doesn't work or if you
