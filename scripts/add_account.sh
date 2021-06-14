@@ -8,7 +8,7 @@ fi
 
 if [ -z "${GDRIVE_AUTHCODE}" ]; then
     echo 'No Google Drive authentication code given.'
-    echo 'To get the authenticatiom code, go to http://goo.gl/kTvy0y and follow prompts.'
+    echo 'To get the authentication code, go to https://insynchq.com/auth?cloud=gd and follow prompts.'
     exit 2
 fi
 

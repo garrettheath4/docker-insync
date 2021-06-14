@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get autoremove -y && \
     apt-get clean
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A684470CACCAF35C && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C && \
     echo "deb http://apt.insynchq.com/debian buster non-free contrib" > /etc/apt/sources.list.d/insync.list && \
     apt-get update && apt-get install -y --no-install-recommends \
     insync-headless && \
@@ -37,3 +37,4 @@ RUN chmod a+x /usr/local/bin/*
 # initialize Insync
 VOLUME /data
 CMD /usr/local/bin/insync_init.sh "${GDRIVE_AUTHCODE}"
+

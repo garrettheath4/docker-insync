@@ -15,16 +15,19 @@ else
 	if [ -z "$(/usr/bin/insync-headless get_account_information)" ]; then
 
 		echo "Adding account with auth code: $auth_code"
-		add_output=$(/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link)
-		echo "add_account :> $add_output"
+		#add_output=$(/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link)
+		#echo "add_account :> $add_output"
+		/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link << EOF
+yes
+EOF
 
-		if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
-			echo 'Error detected, exiting with code 1'
-			exit 1
-		else
+		#if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
+		#	echo 'Error detected, exiting with code 1'
+		#	exit 1
+		#else
 			# run forever since insync-headless is running in the background
 			tail -f ~/.config/Insync/out.txt || tail -f /dev/null
-		fi
+		#fi
 	else
 		/usr/bin/insync-headless get_account_information
 		echo "Insync account already added"
