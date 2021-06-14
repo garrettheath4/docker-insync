@@ -17,10 +17,7 @@ else
 		echo "Adding account with auth code: $auth_code"
 		#add_output=$(/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link)
 		#echo "add_account :> $add_output"
-		/usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link << EOF
-yes
-
-EOF
+		yes yes | /usr/bin/insync-headless add_account --auth-code "$auth_code" --path /data --export-option link
 
 		#if [[ $add_output = "Error"* ]] || [[ $add_output = "Login error"* ]]; then
 		#	echo 'Error detected, exiting with code 1'
